@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vam Barbosa · Super Sorte</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --preto: #080808;
+  --branco: #f4f1ed;
+  --verde: #00e87a;
+  --verde-esc: #00b85f;
+  --cinza: #131313;
+  --cinza2: #1c1c1c;
+  --cinza3: #242424;
+  --muted: rgba(244,241,237,0.5);
+  --muted2: rgba(244,241,237,0.25);
+  --ff: 'Syne', sans-serif;
+  --fb: 'DM Sans', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--preto); color: var(--branco); font-family: var(--fb); overflow-x: hidden; }
+
+/* BARRA AGÊNCIA */
+.agencia-bar {
+  background: rgba(0,232,122,0.07);
+  border-bottom: 1px solid rgba(0,232,122,0.12);
+  padding: .45rem 1rem;
+  text-align: center;
+  font-size: .72rem;
+  color: rgba(0,232,122,0.7);
+  letter-spacing: .04em;
+}
+.agencia-bar strong { color: var(--verde); }
+
+/* HERO */
+.hero {
+  padding: 2.5rem 1.25rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 55% at 50% -10%, rgba(0,232,122,0.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+.avatar-ring {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,232,122,.35);
+  padding: 3px;
+  margin: 0 auto 1.25rem;
+  animation: popIn .5s ease both;
+}
+.avatar-inner {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  background: var(--cinza2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.avatar-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+.hero-nome {
+  font-family: var(--ff);
+  font-size: 1.9rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  margin-bottom: .2rem;
+  animation: fadeUp .45s .05s ease both;
+}
+.hero-local {
+  font-size: .78rem;
+  color: var(--verde);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: .9rem;
+  animation: fadeUp .45s .1s ease both;
+}
+.hero-bio {
+  font-size: .92rem;
+  color: var(--muted);
+  max-width: 360px;
+  margin: 0 auto 1.6rem;
+  line-height: 1.7;
+  font-weight: 300;
+  animation: fadeUp .45s .15s ease both;
+}
+.badge-urgencia {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(0,232,122,.1);
+  border: 1px solid rgba(0,232,122,.2);
+  color: var(--verde);
+  padding: .3rem .9rem;
+  border-radius: 100px;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  margin-bottom: 1rem;
+  animation: fadeUp .45s .08s ease both;
+}
+.badge-urgencia::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--verde); border-radius: 50%;
+  animation: pulsar 1.8s ease infinite;
+}
+/* Badge live - todas as semanas */
+.badge-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(220, 38, 38, 0.15);
+  border: 1px solid rgba(220, 38, 38, 0.4);
+  color: #ff8888;
+  padding: 0.3rem 1rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  animation: fadeUp .45s .1s ease both;
+}
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ef4444;
+  border-radius: 50%;
+  animation: pisca 1s step-end infinite;
+}
+@keyframes pisca {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+@keyframes pulsar { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.75)} }
+.hero-btns { display: flex; flex-direction: column; gap: .75rem; max-width: 340px; margin: 0 auto; animation: fadeUp .45s .22s ease both; }
+.btn-wpp {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--verde); color: var(--preto);
+  padding: .9rem 1.5rem; border-radius: 12px;
+  font-weight: 600; font-size: .95rem; text-decoration: none;
+  transition: all .2s;
+}
+.btn-wpp:hover { background: var(--verde-esc); transform: translateY(-2px); }
+.btn-cadastro {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--cinza2);
+  border: 1px solid rgba(255,255,255,.1);
+  color: var(--branco);
+  padding: .85rem 1.5rem; border-radius: 12px;
+  font-weight: 500; font-size: .9rem; text-decoration: none;
+  transition: all .2s;
+}
+.btn-cadastro:hover { border-color: rgba(0,232,122,.3); }
+.btn-hint { font-size: .72rem; color: var(--muted2); text-align: center; margin-top: .25rem; line-height: 1.5; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+@keyframes popIn { from{opacity:0;transform:scale(.85)} to{opacity:1;transform:scale(1)} }
+.sec { padding: 0 1.25rem; margin-bottom: 1.5rem; }
+.card { background: var(--cinza); border: 1px solid rgba(255,255,255,.06); border-radius: 18px; padding: 1.5rem; }
+.card-tag { font-size: .68rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--verde); margin-bottom: .6rem; }
+.card-title { font-family: var(--ff); font-size: 1.25rem; font-weight: 800; letter-spacing: -.03em; line-height: 1.15; margin-bottom: .7rem; }
+.card-title span { color: var(--verde); }
+.card-body { font-size: .875rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
+.nums-row {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 8px; margin-bottom: 1.5rem;
+}
+.num-item {
+  background: var(--cinza2);
+  border: 1px solid rgba(255,255,255,.05);
+  border-radius: 12px; padding: .9rem .6rem;
+  text-align: center;
+}
+.num-val {
+  font-family: var(--ff);
+  font-size: 1.3rem; font-weight: 800;
+  color: var(--verde); line-height: 1;
+  margin-bottom: .2rem;
+}
+.num-lab { font-size: .68rem; color: var(--muted); line-height: 1.35; font-weight: 300; }
+.matriz-wrap { overflow-x: auto; margin-top: 1rem; }
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead th {
+  background: var(--cinza2);
+  padding: .6rem .8rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: .72rem;
+  letter-spacing: .06em;
+  color: var(--muted);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+thead th:last-child { text-align: right; }
+tbody tr { border-bottom: 1px solid rgba(255,255,255,.04); transition: background .15s; }
+tbody tr:hover { background: rgba(255,255,255,.03); }
+tbody tr.destaque { background: rgba(0,232,122,.06); }
+tbody tr.destaque td { color: var(--verde); font-weight: 500; }
+tbody td { padding: .6rem .8rem; color: rgba(244,241,237,.7); }
+tbody td:last-child { text-align: right; font-weight: 600; color: var(--branco); }
+tbody tr.destaque td:last-child { color: var(--verde); }
+.total-row td { padding: .7rem .8rem; font-weight: 600; color: var(--branco); border-top: 1px solid rgba(0,232,122,.2); background: rgba(0,232,122,.04); }
+.total-row td:last-child { color: var(--verde); font-size: 1rem; }
+.ganho-box {
+  background: var(--verde);
+  border-radius: 18px;
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.ganho-box::before {
+  content: '';
+  position: absolute; top: -50px; right: -50px;
+  width: 150px; height: 150px;
+  background: rgba(255,255,255,.08);
+  border-radius: 50%;
+}
+.ganho-cima { font-size: .78rem; color: rgba(8,8,8,.6); margin-bottom: .15rem; position: relative; z-index: 1; }
+.ganho-val {
+  font-family: var(--ff);
+  font-size: 3.2rem; font-weight: 800;
+  color: var(--preto); letter-spacing: -.05em;
+  line-height: 1; margin-bottom: .15rem;
+  position: relative; z-index: 1;
+}
+.ganho-sub { font-size: .78rem; color: rgba(8,8,8,.55); position: relative; z-index: 1; font-weight: 300; }
+.ganho-linha { height: 1px; background: rgba(8,8,8,.1); margin: 1rem 0; position: relative; z-index: 1; }
+.ganho-detalhe { font-size: .8rem; color: rgba(8,8,8,.6); position: relative; z-index: 1; }
+.ganho-detalhe strong { color: var(--preto); }
+.saque-grid { display: flex; flex-direction: column; gap: 8px; margin-top: 1rem; }
+.saque-row {
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--cinza2); border: 1px solid rgba(255,255,255,.05);
+  border-radius: 10px; padding: .7rem 1rem;
+  font-size: .84rem;
+}
+.saque-label { color: var(--muted); }
+.saque-val { font-weight: 600; color: var(--branco); }
+.saque-val.verde { color: var(--verde); }
+.saque-row.total {
+  background: rgba(0,232,122,.07);
+  border-color: rgba(0,232,122,.2);
+}
+.saque-row.total .saque-label { color: var(--branco); font-weight: 500; }
+.saque-row.total .saque-val { font-size: 1rem; }
+.passos { display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem; }
+.passo { display: flex; gap: .9rem; align-items: flex-start; }
+.passo-n {
+  min-width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(0,232,122,.1); border: 1px solid rgba(0,232,122,.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .72rem; font-weight: 700; color: var(--verde);
+  flex-shrink: 0; margin-top: 1px;
+}
+.passo-txt strong { display: block; font-size: .875rem; font-weight: 500; margin-bottom: 2px; }
+.passo-txt span { font-size: .8rem; color: var(--muted); font-weight: 300; line-height: 1.5; }
+/* VÍDEOS */
+.video-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.video-card {
+  background: var(--cinza2);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.05);
+}
+.video-card.vertical {
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.video-card video {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #000;
+}
+.video-label {
+  padding: 0.6rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--verde);
+  background: rgba(0,232,122,.05);
+  letter-spacing: 0.5px;
+}
+.video-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+@media (max-width: 640px) {
+  .video-row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+/* SEÇÃO BIA - BOTÃO WHATSAPP (sem formulário falso) */
+.bia-section {
+  background: linear-gradient(135deg, var(--cinza2) 0%, #0a0a0a 100%);
+  border: 1px solid rgba(0,232,122,.2);
+  border-radius: 24px;
+  margin: 0 1.25rem 2rem;
+  padding: 1.8rem 1.5rem;
+  text-align: center;
+}
+.bia-title {
+  font-family: var(--ff);
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+.bia-title span { color: var(--verde); }
+.bia-text {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+  line-height: 1.5;
+}
+.btn-bia-wpp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #25D366;
+  color: #fff;
+  padding: 0.9rem 1.8rem;
+  border-radius: 60px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: 0.2s;
+  border: none;
+  cursor: pointer;
+}
+.btn-bia-wpp:hover {
+  background: #128C7E;
+  transform: scale(1.02);
+}
+.bia-aviso {
+  font-size: 0.65rem;
+  color: var(--muted2);
+  margin-top: 1rem;
+}
+.cta-final {
+  background: var(--cinza); border: 1px solid rgba(0,232,122,.15);
+  border-radius: 18px; padding: 2rem 1.5rem;
+  text-align: center; margin: 0 1.25rem 2rem;
+}
+.cta-final h2 {
+  font-family: var(--ff); font-size: 1.5rem; font-weight: 800;
+  letter-spacing: -.03em; margin-bottom: .6rem; line-height: 1.15;
+}
+.cta-final h2 span { color: var(--verde); }
+.cta-final p { font-size: .875rem; color: var(--muted); margin-bottom: 1.4rem; line-height: 1.6; font-weight: 300; }
+.cta-btns { display: flex; flex-direction: column; gap: .75rem; }
+.aviso { font-size: .72rem; color: var(--muted2); margin-top: .75rem; line-height: 1.5; }
+footer {
+  border-top: 1px solid rgba(255,255,255,.05);
+  padding: 1.25rem;
+  text-align: center;
+}
+.ft-logo { font-family: var(--ff); font-size: .75rem; font-weight: 700; color: rgba(244,241,237,.2); margin-bottom: .2rem; }
+.ft-logo span { color: rgba(0,232,122,.4); }
+footer p { font-size: .68rem; color: rgba(244,241,237,.15); }
+</style>
+</head>
+<body>
+
+<div class="agencia-bar">
+  Página criada pro bono por <strong>MaisTalentto</strong> · Agência de IA e Presença Digital
+</div>
+
+<section class="hero">
+  <div class="avatar-ring">
+    <div class="avatar-inner">
+      <img src="https://tvpronta.com/mascote.png" alt="Mascote Mais Talentto">
+    </div>
+  </div>
+  <h1 class="hero-nome">Vam Barbosa</h1>
+  <div class="hero-local">Parceiro Super Sorte · Campos dos Goytacazes - RJ</div>
+  <div class="badge-urgencia">VAGAS LIMITADAS · CADASTRO GRÁTIS</div>
+  <div class="badge-live">
+    <span class="live-dot"></span>
+    LIVE AO VIVO TODAS AS SEMANAS
+  </div>
+  <p class="hero-bio">
+    Olá! Comecei com R$10 e em poucos meses já tenho uma renda extra real todo mês. Quero te mostrar como funciona — sem enrolação.
+  </p>
+  <div class="nums-row">
+    <div class="num-item"><div class="num-val">R$10</div><div class="num-lab">por mês para participar</div></div>
+    <div class="num-item"><div class="num-val">PIX</div><div class="num-lab">automático todo mês</div></div>
+    <div class="num-item"><div class="num-val">10</div><div class="num-lab">níveis de ganho em rede</div></div>
+  </div>
+  <div class="hero-btns">
+    <a href="https://wa.me/5522999921997?text=Olá%20Vam!%20Vi%20sua%20página%20e%20quero%20entender%20mais%20sobre%20o%20Super%20Sorte." class="btn-wpp">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Tirar dúvidas no WhatsApp
+    </a>
+    <a href="https://clubsaf.com/ssregistro/vambarbosa" class="btn-cadastro">
+      Quero me cadastrar agora →
+    </a>
+    <p class="btn-hint">Cadastro 100% gratuito · Sem dados de cartão · Cancele quando quiser</p>
+  </div>
+</section>
+
+<div class="sec"><div class="card"><div class="card-tag">O projeto</div><h2 class="card-title">Super Sorte — renda extra com <span>R$10 por mês</span></h2><p class="card-body">O Super Sorte é uma plataforma de sorteios mensais via PIX integrada a uma matriz de distribuição 3x10 forçada. Cada participante paga R$10/mês, concorre a prêmios automáticos e recebe sua parte da distribuição em rede — quanto mais cresce sua rede, maior a renda passiva mensal. Tudo automático, tudo via PIX.</p></div></div>
+
+<div class="sec"><div class="card"><div class="card-tag">Passo a passo</div><h2 class="card-title">Simples assim</h2><div class="passos"><div class="passo"><div class="passo-n">1</div><div class="passo-txt"><strong>Cadastre-se gratuitamente</strong><span>Sem custo de entrada. O cadastro é 100% grátis e leva menos de 2 minutos.</span></div></div><div class="passo"><div class="passo-n">2</div><div class="passo-txt"><strong>Ative seu bilhete por R$10</strong><span>Todo mês você renova seu bilhete e mantém sua posição ativa na matriz e nos sorteios.</span></div></div><div class="passo"><div class="passo-n">3</div><div class="passo-txt"><strong>Participe dos sorteios</strong><span>A cada grupo de 10 participantes formado, o sorteio acontece automaticamente e o ganhador recebe R$27 via PIX na hora.</span></div></div><div class="passo"><div class="passo-n">4</div><div class="passo-txt"><strong>Receba da sua rede</strong><span>A cada novo ticket ativo em sua rede (até o 10º nível), você recebe automaticamente sua parte da distribuição via PIX.</span></div></div></div></div></div>
+
+<!-- SEÇÃO DE VÍDEOS -->
+<div class="sec">
+  <div class="card">
+    <div class="card-tag">Assista antes de começar</div>
+    <h2 class="card-title">Entenda o potencial com <span>nossos vídeos</span></h2>
+    <div class="video-grid">
+      <div class="video-card vertical">
+        <video controls playsinline preload="metadata">
+          <source src="https://tvpronta.com/convite.mp4" type="video/mp4">
+        </video>
+        <div class="video-label">📹 Convite especial – assista até o final</div>
+      </div>
+      <div class="video-row">
+        <div class="video-card">
+          <video controls playsinline preload="metadata">
+            <source src="https://tvpronta.com/super-saque.mp4" type="video/mp4">
+          </video>
+          <div class="video-label">💰 Como funciona o saque + rede</div>
+        </div>
+        <div class="video-card">
+          <video controls playsinline preload="metadata">
+            <source src="https://tvpronta.com/matriz-3x10.mp4" type="video/mp4">
+          </video>
+          <div class="video-label">📊 Entenda a matriz 3x10 forçada</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec"><div class="card"><div class="card-tag">Matriz 3x10 forçada</div><h2 class="card-title">Veja quanto você pode ganhar <span>por nível</span></h2><p class="card-body" style="margin-bottom:.25rem">A cada ticket de R$10 ativo na sua rede, R$0,50 é distribuído para você naquele nível. Com a matriz 3x10 forçada, cada nível multiplica por 3 o número de participantes.</p><div class="matriz-wrap"><table><thead><tr><th>Nível</th><th>Pessoas</th><th>Por pessoa</th><th>Ganho do nível</th></tr></thead><tbody><tr><td>Nível 1</td><td>3</td><td>R$0,50</td><td>R$1,50</td></tr><tr><td>Nível 2</td><td>9</td><td>R$0,50</td><td>R$4,50</td></tr><tr><td>Nível 3</td><td>27</td><td>R$0,50</td><td>R$13,50</td></tr><tr><td>Nível 4</td><td>81</td><td>R$0,50</td><td>R$40,50</td></tr><tr><td>Nível 5</td><td>243</td><td>R$0,50</td><td>R$121,50</td></tr><tr><td>Nível 6</td><td>729</td><td>R$0,50</td><td>R$364,50</td></tr>
+<tr class="destaque"><td>Nível 7</td><td>2.187</td><td>R$0,50</td><td>R$1.093,50</td></tr>
+<tr class="destaque"><td>Nível 8 ★</td><td>6.561</td><td>R$0,50</td><td>R$3.280,50</td></tr>
+<tr><td>Nível 9</td><td>19.683</td><td>R$0,50</td><td>R$9.841,50</td></tr>
+<tr><td>Nível 10</td><td>59.049</td><td>R$0,50</td><td>R$29.524,50</td></tr>
+<tr class="total-row"><td colspan="3">Total acumulado (10 níveis)</td><td>R$44.485,50</td></tr>
+</tbody></table></div><p style="font-size:.72rem;color:var(--muted2);margin-top:.75rem;">* Valores referentes à distribuição mensal com todos os níveis ativos. Resultados variam.</p></div></div>
+
+<div class="sec"><div class="ganho-box"><div class="ganho-cima">Exemplo real — sua rede no nível 8</div><div class="ganho-val">R$3.280</div><div class="ganho-sub">por mês só do nível 8 da sua matriz</div><div class="ganho-linha"></div><div class="ganho-detalhe">6.561 participantes × R$0,50 = <strong>R$3.280,50/mês</strong></div></div></div>
+
+<div class="sec"><div class="card"><div class="card-tag">Como funciona o saque</div><h2 class="card-title">Transparência total na <span>distribuição</span></h2><p class="card-body">A cada saque realizado, 10% do valor é distribuído automaticamente em rede — 1% para cada nível. Veja como fica em um saque de R$100:</p><div class="saque-grid"><div class="saque-row"><span class="saque-label">Valor do saque</span><span class="saque-val">R$100,00</span></div><div class="saque-row"><span class="saque-label">Taxa de distribuição em rede (10%)</span><span class="saque-val">R$10,00</span></div><div class="saque-row"><span class="saque-label">Cada nível recebe (1% = R$1,00)</span><span class="saque-val">× 10 níveis</span></div><div class="saque-row total"><span class="saque-label">Você recebe líquido</span><span class="saque-val verde">R$90,00 via PIX</span></div></div><p style="font-size:.75rem;color:var(--muted2);margin-top:.9rem;">Os 10% distribuídos na rede são pagos pelos participantes abaixo de você na matriz — chegando automaticamente para quem está nos níveis acima.</p></div></div>
+
+<div class="sec"><div class="card"><div class="card-tag">Simulação de renda</div><h2 class="card-title">Se sua rede chegar ao <span>nível 8</span></h2><p class="card-body" style="margin-bottom:1rem">Supondo que cada participante da sua rede saque em média R$100/mês, veja o que chega para você automaticamente só dos 10% distribuídos:</p><div class="saque-grid"><div class="saque-row"><span class="saque-label">Participantes no nível 8</span><span class="saque-val">6.561 pessoas</span></div><div class="saque-row"><span class="saque-label">Saque médio por pessoa</span><span class="saque-val">R$100,00</span></div><div class="saque-row"><span class="saque-label">Você recebe 1% de cada saque</span><span class="saque-val">R$1,00 por pessoa</span></div><div class="saque-row total"><span class="saque-label">Sua renda passiva do nível 8</span><span class="saque-val verde">R$6.561/mês</span></div></div></div></div>
+
+<div class="sec"><div class="card"><div class="card-tag">Quem já está dentro</div><h2 class="card-title">O que estão dizendo</h2><div class="prova-grid"><div class="prova-item"><p class="prova-txt">"Comecei sem acreditar muito. No segundo mês já tinha recebido mais de R$47 via PIX só da rede. Com R$10 de investimento isso foi surreal."</p><div class="prova-autor"><div class="prova-av">MF</div><div><div class="prova-nome">Marcos F.</div><div class="prova-cid">São Paulo / SP</div></div></div></div><div class="prova-item"><p class="prova-txt">"O PIX cai automático, não precisa pedir. Já indiquei 3 pessoas e a rede tá crescendo sozinha. Melhor R$10 que já gastei."</p><div class="prova-autor"><div class="prova-av">CA</div><div><div class="prova-nome">Carla A.</div><div class="prova-cid">Recife / PE</div></div></div></div></div></div></div>
+
+<!-- SEÇÃO BIA - BOTÃO WHATSAPP -->
+<div class="bia-section">
+  <div class="bia-title">BIA <span>· Inteligência Artificial</span></div>
+  <div class="bia-text">Fique por dentro de novos projetos, treinamentos e oportunidades da nossa agência. Clique abaixo e fale conosco.</div>
+  <a href="https://wa.me/5522998259862?text=Vim%20pela%20página%20do%20Vam%20Barbosa%20e%20quero%20entrar%20na%20lista%20de%20espera%20da%20IA%20BIA" class="btn-bia-wpp" target="_blank">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    QUERO ENTRAR NA LISTA DE ESPERA
+  </a>
+  <div class="bia-aviso">Você será redirecionado ao WhatsApp da Mais Talentto. Basta enviar a mensagem automática.</div>
+</div>
+
+<div class="cta-final">
+  <h2>Pronto para começar<br>com <span>R$10?</span></h2>
+  <p>Cadastro grátis. Sem risco. Seu primeiro PIX pode chegar antes do que você imagina.</p>
+  <div class="cta-btns">
+    <a href="https://clubsaf.com/ssregistro/vambarbosa" class="btn-wpp">
+      Quero me cadastrar agora →
+    </a>
+    <a href="https://wa.me/5522999921997?text=Olá!%20Tenho%20dúvidas%20sobre%20o%20Super%20Sorte." class="btn-cadastro">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Ainda tenho dúvidas — falar com Vam
+    </a>
+  </div>
+  <p class="aviso">Cadastro grátis. Não pedimos cartão de crédito – apenas sua chave PIX para os sorteios e recebimentos.</p>
+</div>
+
+<footer>
+  <div class="ft-logo">Mais<span>Talentto</span></div>
+  <p>Página criada pro bono · 2025 · Agência de IA e Presença Digital</p>
+</footer>
+
+</body>
+</html>
