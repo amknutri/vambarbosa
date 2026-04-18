@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vam Barbosa · Super Sorte</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<!-- Google Fonts: carrega as 4 famílias (as novas + as originais como fallback) -->
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Inter:opsz,wght@14..32,300..700&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -17,8 +18,10 @@
   --cinza3: #242424;
   --muted: rgba(244,241,237,0.5);
   --muted2: rgba(244,241,237,0.25);
-  --ff: 'Syne', sans-serif;
-  --fb: 'DM Sans', sans-serif;
+  /* Títulos: prioridade Montserrat (moderna e legível), depois Syne, depois fallback */
+  --ff: 'Montserrat', 'Syne', sans-serif;
+  /* Corpo do texto: prioridade Inter (altamente legível), depois DM Sans, depois fallback */
+  --fb: 'Inter', 'DM Sans', sans-serif;
 }
 html { scroll-behavior: smooth; }
 body { background: var(--preto); color: var(--branco); font-family: var(--fb); overflow-x: hidden; }
@@ -364,7 +367,8 @@ tbody tr.destaque td:last-child { color: var(--verde); }
   text-align: center; margin: 0 1.25rem 2rem;
 }
 .cta-final h2 {
-  font-family: var(--ff); font-size: 1.5rem; font-weight: 800;
+  font-family: var(--ff);
+  font-size: 1.5rem; font-weight: 800;
   letter-spacing: -.03em; margin-bottom: .6rem; line-height: 1.15;
 }
 .cta-final h2 span { color: var(--verde); }
